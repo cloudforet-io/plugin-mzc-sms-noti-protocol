@@ -43,7 +43,7 @@ class NotificationService(BaseService):
 
         access_key = secret_data.get('access_key')
         secret_key = secret_data.get('secret_key')
-        phone = channel_data.get('phone')
+        phone_number = channel_data.get('phone_number')
         kwargs = {}
 
         body = self.make_sms_body(params_message, notification_type)
@@ -52,7 +52,7 @@ class NotificationService(BaseService):
         noti_mgr.dispatch(access_key, secret_key,
                           params_message.get('title', MEGAZONE_SMS_CONF['default']['title']),
                           body,
-                          phone,
+                          phone_number,
                           **kwargs)
 
     @staticmethod
