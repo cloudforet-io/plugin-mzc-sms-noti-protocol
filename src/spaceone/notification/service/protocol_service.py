@@ -19,14 +19,15 @@ class ProtocolService(BaseService):
             'data': {
                 'schema': {
                     'properties': {
-                        'phone': {
-                            'minLength': 4,
+                        'phone_number': {
+                            'minLength': 10,
                             'title': 'Phone Number',
-                            'type': 'string'
+                            'type': 'string',
+                            'pattern': '^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4}[.-]?(\\d{4})$'
                         }
                     },
                     'required': [
-                        'phone'
+                        'phone_number'
                     ],
                     'type': 'object'
                 }

@@ -37,7 +37,7 @@ class TestVoiceCallNotification(TestCase):
         'secret_key': SECRET_KEY,
     }
     channel_data = {
-        'phone': PHONE,
+        'phone_number': PHONE,
     }
 
     def test_init(self):
