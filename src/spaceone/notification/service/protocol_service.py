@@ -23,7 +23,7 @@ class ProtocolService(BaseService):
                             'minLength': 10,
                             'title': 'Phone Number',
                             'type': 'string',
-                            'pattern': '^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$'
+                            'pattern': '^01(?:0|1|[6-9])(\\d{3}|\\d{4})(\\d{4})$'
                         }
                     },
                     'required': [
