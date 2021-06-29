@@ -56,12 +56,24 @@ class TestVoiceCallNotification(TestCase):
             'message': {
                 'title': 'Alert 테스트',
                 'description': '서버 장애가 발생하였습니다. SpaceONE 에서 자세한 정보를 확인해 주세요.',
-                'tags': {
-                    'project_id': 'project-xxxxx',
-                    'project_name': '스페이스원 웹서버',
-                    'resource_id': 'server-yyyyy',
-                    'resource_name': 'web-server-001'
-                },
+                'tags': [
+                    {
+                        'key': 'project_id',
+                        'value': 'project-xxxxx'
+                    },
+                    {
+                        'key': 'project_name',
+                        'value': '스페이스원 웹서버'
+                    },
+                    {
+                        'key': 'resource_id',
+                        'value': 'server-yyyyy'
+                    },
+                    {
+                        'key': 'resource_name',
+                        'value': 'web-server-001'
+                    }
+                ],
                 'callbacks': [{
                     'url': 'https://spaceone.console.doodle.spaceone.dev/monitoring/alert-system/alert/xxxxx'
                 }
