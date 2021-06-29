@@ -24,7 +24,10 @@ class NotificationService(BaseService):
                 - message
                     - title
                     - description
-                    - tags (dict)
+                    - tags (list)
+                        - key
+                        - value
+                        - options
                     - callbacks (list)
                         - url
                         - options
@@ -59,10 +62,8 @@ class NotificationService(BaseService):
     def make_sms_body(message, notification_type):
         body = f'알림 타입: {notification_type}\n\n{message.get("description", "")}\n'
 
-        if 'tags' in message:
-            tag_message = ''
-            for key, value in message['tags'].items():
-                tag_message = f'{tag_message}- {key}: {value}\n'
+        for tag in message.get('tags', []):
+            tag_message = f'- {tag.get("key", "")}: {tag.get("value", "")}'
 
             body = f'{body}\n{tag_message}'
 
