@@ -67,11 +67,11 @@ class NotificationService(BaseService):
 
             body = f'{body}\n{tag_message}'
 
-        if 'callbacks' in message:
-            callback_msg = ''
-            for callback in message['callbacks']:
-                callback_msg = f'{callback_msg}\n{callback.get("url")}'
-
-            body = f'{body}\n{callback_msg}'
+        # if 'callbacks' in message:
+        #     callback_msg = ''
+        #     for callback in message['callbacks']:
+        #         callback_msg = f'{callback_msg}\n{callback.get("url")}'
+        #
+        #     body = f'{body}\n{callback_msg}'
 
         return body
