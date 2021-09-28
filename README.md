@@ -12,5 +12,8 @@ Please contact us if you need any further information. (<support@spaceone.dev>)
 
 ## Release Note
 
+### Ver 1.0.2
+* update message format
+
 ### Ver 1.0.1
 * update metadata: add description, examples value for json schema object
