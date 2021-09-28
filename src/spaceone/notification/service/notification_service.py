@@ -60,18 +60,14 @@ class NotificationService(BaseService):
 
     @staticmethod
     def make_sms_body(message, notification_type):
-        body = f'알림 타입: {notification_type}\n\n{message.get("description", "")}\n'
+        body = f'알림 타입: {notification_type}\n'
+
+        if description := message.get('description', ''):
+            body = f'{body}\n{description}\n'
 
         for tag in message.get('tags', []):
             tag_message = f'- {tag.get("key", "")}: {tag.get("value", "")}'
 
             body = f'{body}\n{tag_message}'
-
-        # if 'callbacks' in message:
-        #     callback_msg = ''
-        #     for callback in message['callbacks']:
-        #         callback_msg = f'{callback_msg}\n{callback.get("url")}'
-        #
-        #     body = f'{body}\n{callback_msg}'
 
         return body
