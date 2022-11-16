@@ -2,7 +2,6 @@ import logging
 import time
 from spaceone.core.service import *
 from spaceone.notification.manager.notification_manager import NotificationManager
-from spaceone.notification.conf.megazone_sms_conf import MEGAZONE_SMS_CONF
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -44,7 +43,6 @@ class NotificationService(BaseService):
         params_message = params['message']
 
         access_key = secret_data.get('access_key')
-        secret_key = secret_data.get('secret_key')
         phone_number = channel_data.get('phone_number')
         kwargs = {}
 
@@ -54,14 +52,7 @@ class NotificationService(BaseService):
         body = self.make_sms_body(params_message, notification_type)
 
         noti_mgr: NotificationManager = self.locator.get_manager('NotificationManager')
-
-        for phone_number in phone_numbers:
-            noti_mgr.dispatch(access_key, secret_key,
-                              params_message.get('title', MEGAZONE_SMS_CONF['default']['title']),
-                              body,
-                              phone_number,
-                              **kwargs)
-            time.sleep(0.2)
+        noti_mgr.dispatch(access_key, params_message.get('title'), body, phone_numbers, **kwargs)
 
     @staticmethod
     def make_sms_body(message, notification_type):

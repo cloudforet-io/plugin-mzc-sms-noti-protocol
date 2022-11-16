@@ -1,2 +1,2 @@
 from spaceone.notification.manager.notification_manager import NotificationManager
-from spaceone.notification.manager.megazone_sms_manager import MegazoneSMSManager
+from spaceone.notification.manager.megabird_manager import MegabirdManager
