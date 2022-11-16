@@ -18,7 +18,6 @@ class MegabirdConnector(BaseConnector):
 
     def set_connector(self, access_key):
         self.headers = make_header(access_key)
-        _LOGGER.debug(f'Header: {self.headers}')
 
     def request_send_message(self, title, body, receivers, **kwargs):
         request_url = f'{ENDPOINT_URL}/v1/openapi/sms/send'
