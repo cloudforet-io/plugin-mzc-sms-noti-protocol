@@ -1,0 +1,12 @@
+---
+name: plugin-mzc-sms-noti-protocol
+provider: megazone_message
+service_type: notification.Protocol
+image: pyengine/plugin-mzc-sms-noti-protocol
+capability:
+  supported_schema:
+  - megazone_message_secret
+tags:
+  description: SMS
+  icon: https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/sms.svg
+  spaceone:plugin_name: SMS
