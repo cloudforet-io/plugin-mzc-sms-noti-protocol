@@ -27,7 +27,7 @@ class MegabirdConnector(BaseConnector):
 
         body = {
             'svcKndCd': TYPE,
-            'msgTtl': title,
+            'msgTtl': title[:MAX_TITLE_LEN],
             'msgCotn': body,
             'adIncluYn': 'N',
             'snPhnum': SENDER,
