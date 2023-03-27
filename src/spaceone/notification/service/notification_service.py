@@ -32,7 +32,7 @@ class NotificationService(BaseService):
                 - notification_type
                 - secret_data:
                     - access_key
-                    - secret_key
+                    - sender
                 - channel_data
                     - phone_number
         """
@@ -45,6 +45,9 @@ class NotificationService(BaseService):
         access_key = secret_data.get('access_key')
         phone_number = channel_data.get('phone_number')
         kwargs = {}
+
+        if 'sender' in secret_data:
+            kwargs['sender'] = secret_data['sender']
 
         phone_numbers = phone_number.replace(" ", "").split(',')
         phone_numbers = [ph for ph in phone_numbers if ph != '']

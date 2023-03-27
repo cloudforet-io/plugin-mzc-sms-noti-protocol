@@ -30,7 +30,7 @@ class MegabirdConnector(BaseConnector):
             'msgTtl': title[:MAX_TITLE_LEN],
             'msgCotn': body,
             'adIncluYn': 'N',
-            'snPhnum': SENDER,
+            'snPhnum': kwargs.get('sender', SENDER),
             'messageReceiverList': self.set_message_receiver_list(receivers)
         }
 
