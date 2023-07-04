@@ -1,9 +1,8 @@
-import base64
 import json
 import requests
 import logging
-from spaceone.notification.conf.megabird_conf import *
 
+from spaceone.notification.conf import TITLE, SENDER, ENDPOINT_URL, TYPE
 from spaceone.core.connector import BaseConnector
 
 __all__ = ['MegabirdConnector']
@@ -19,12 +18,14 @@ class MegabirdConnector(BaseConnector):
     def set_connector(self, access_key):
         self.headers = make_header(access_key)
 
-    def request_send_message(self, body, receivers, **kwargs):
+    def request_send_message(self, title, notification_type, body, receivers, **kwargs):
         request_url = f'{ENDPOINT_URL}/v1/openapi/sms/send'
+
+        msg_title = title if title else TITLE
 
         body = {
             'svcKndCd': TYPE,
-            'msgTtl': TITLE,
+            'msgTtl': f'{msg_title} - {notification_type}' if notification_type else msg_title,
             'msgCotn': body,
             'adIncluYn': 'N',
             'snPhnum': kwargs.get('sender', SENDER),
@@ -38,6 +39,7 @@ class MegabirdConnector(BaseConnector):
     @staticmethod
     def set_message_receiver_list(receivers):
         return [{'mbnum': receiver} for receiver in receivers]
+
 
 def make_header(access_key):
     return {

@@ -36,7 +36,8 @@ class NotificationService(BaseService):
                 - channel_data
                     - phone_number
         """
-
+        options = params['options']
+        title = options.get('title', '')
         secret_data = params.get('secret_data', {})
         channel_data = params.get('channel_data', {})
         notification_type = params['notification_type']
@@ -52,14 +53,14 @@ class NotificationService(BaseService):
         phone_numbers = phone_number.replace(" ", "").split(',')
         phone_numbers = [ph for ph in phone_numbers if ph != '']
 
-        body = self.make_sms_body(params_message, notification_type)
+        body = self.make_sms_body(params_message)
 
         noti_mgr: NotificationManager = self.locator.get_manager('NotificationManager')
-        noti_mgr.dispatch(access_key, body, phone_numbers, **kwargs)
+        noti_mgr.dispatch(access_key, title, notification_type, body, phone_numbers, **kwargs)
 
     @staticmethod
-    def make_sms_body(message, notification_type):
-        body = f'알림 타입: {notification_type}\n'
+    def make_sms_body(message):
+        body = ''
 
         if title := message.get('title', ''):
             body = f'{body}\n{title}\n'
