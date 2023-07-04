@@ -11,5 +11,5 @@ class MegabirdManager(BaseManager):
     def set_connector(self, access_key):
         self.megabird_connector.set_connector(access_key)
 
-    def request_send_sms(self, title, body, receivers, **kwargs):
-        self.megabird_connector.request_send_message(title, body, receivers, **kwargs)
+    def request_send_sms(self, body, receivers, **kwargs):
+        self.megabird_connector.request_send_message(body, receivers, **kwargs)

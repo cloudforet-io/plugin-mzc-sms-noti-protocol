@@ -55,11 +55,14 @@ class NotificationService(BaseService):
         body = self.make_sms_body(params_message, notification_type)
 
         noti_mgr: NotificationManager = self.locator.get_manager('NotificationManager')
-        noti_mgr.dispatch(access_key, params_message.get('title'), body, phone_numbers, **kwargs)
+        noti_mgr.dispatch(access_key, body, phone_numbers, **kwargs)
 
     @staticmethod
     def make_sms_body(message, notification_type):
         body = f'알림 타입: {notification_type}\n'
+
+        if title := message.get('title', ''):
+            body = f'{body}\n{title}\n'
 
         if description := message.get('description', ''):
             body = f'{body}\n{description}\n'
