@@ -19,15 +19,12 @@ class MegabirdConnector(BaseConnector):
     def set_connector(self, access_key):
         self.headers = make_header(access_key)
 
-    def request_send_message(self, title, body, receivers, **kwargs):
+    def request_send_message(self, body, receivers, **kwargs):
         request_url = f'{ENDPOINT_URL}/v1/openapi/sms/send'
-
-        if title is None:
-            title = TITLE
 
         body = {
             'svcKndCd': TYPE,
-            'msgTtl': title[:MAX_TITLE_LEN],
+            'msgTtl': TITLE,
             'msgCotn': body,
             'adIncluYn': 'N',
             'snPhnum': kwargs.get('sender', SENDER),
